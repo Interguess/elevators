@@ -1,0 +1,6 @@
+main: de.igweb.igelevators.plugin.IgElevators
+name: IgElevators
+version: 1.0
+author: InterGuess
+description: A simple elevator plugin for Spigot
+api-version: 1.20
