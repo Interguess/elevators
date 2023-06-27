@@ -1,0 +1,3 @@
+rootProject.name = 'IgElevators'
+include 'api'
+include 'plugin'

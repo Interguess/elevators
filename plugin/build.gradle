@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+}
+
+group = 'de.igweb'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+    }
+    maven {
+        url 'https://repo.papermc.io/repository/maven-public/'
+    }
+}
+
+dependencies {
+    implementation project(':api')
+    implementation 'org.projectlombok:lombok:1.18.26'
+    annotationProcessor 'org.projectlombok:lombok:1.18.26'
+    compileOnly 'org.spigotmc:spigot-api:1.20.1-R0.1-SNAPSHOT'
+    implementation platform('com.intellectualsites.bom:bom-1.18.x:1.28')
+    compileOnly 'com.plotsquared:PlotSquared-Core'
+    compileOnly 'com.plotsquared:PlotSquared-Bukkit'
+}
