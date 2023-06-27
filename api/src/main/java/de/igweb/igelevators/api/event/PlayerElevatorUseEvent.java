@@ -1,7 +1,7 @@
 package de.igweb.igelevators.api.event;
 
 
-import de.igweb.igelevators.api.Elevator;
+import de.igweb.igelevators.api.elevator.Elevator;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;

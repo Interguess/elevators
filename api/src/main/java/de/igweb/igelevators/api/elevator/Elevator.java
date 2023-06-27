@@ -1,4 +1,4 @@
-package de.igweb.igelevators.api;
+package de.igweb.igelevators.api.elevator;
 
 import org.bukkit.Location;
 import org.bukkit.block.BlockFace;
