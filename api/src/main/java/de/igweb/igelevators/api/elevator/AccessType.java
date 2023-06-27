@@ -7,7 +7,7 @@ public enum AccessType {
     PUBLIC,
     PRIVATE;
 
-    public static AccessType fromDayLightDetector(DaylightDetector daylightDetector) {
+    public static AccessType fromDaylightDetector(DaylightDetector daylightDetector) {
         return daylightDetector.isInverted() ? PRIVATE : PUBLIC;
     }
 }

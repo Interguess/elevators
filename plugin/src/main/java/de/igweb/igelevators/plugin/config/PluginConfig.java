@@ -1,16 +1,21 @@
 package de.igweb.igelevators.plugin.config;
 
 import lombok.Data;
-import org.bukkit.Material;
 import org.bukkit.Sound;
 
 @Data
 public class PluginConfig {
 
-    private final Material elevatorBlockMaterial;
+    private final String successMessage;
 
-    private final String elevatorText;
+    private final Sound successSound;
 
-    private final Sound elevatorSound;
+    private final String notFoundMessage;
+
+    private final Sound notFoundSound;
+
+    private final String unsafeMessage;
+
+    private final Sound unsafeSound;
 
 }
