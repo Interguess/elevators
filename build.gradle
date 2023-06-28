@@ -6,6 +6,21 @@ plugins {
 group = 'de.igweb'
 version = '1.0-SNAPSHOT'
 
+repositories {
+    mavenCentral()
+    maven {
+        url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+    }
+    maven {
+        url 'https://repo.papermc.io/repository/maven-public/'
+    }
+}
+
+dependencies {
+    implementation project(":api")
+    implementation project(":plugin")
+}
+
 java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(17))
 }

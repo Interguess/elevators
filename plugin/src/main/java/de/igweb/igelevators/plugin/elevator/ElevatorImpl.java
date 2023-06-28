@@ -1,7 +1,7 @@
 package de.igweb.igelevators.plugin.elevator;
 
-import de.igweb.igelevators.api.AccessType;
-import de.igweb.igelevators.api.Elevator;
+import de.igweb.igelevators.api.elevator.AccessType;
+import de.igweb.igelevators.api.elevator.Elevator;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
@@ -35,11 +35,18 @@ public class ElevatorImpl implements Elevator {
      */
     @Override
     public Elevator getNextElevator(BlockFace direction, AccessType accessType) {
-        for (int i = MIN_RANGE; i < MAX_RANGE; i++) {
-            Location next = location.clone().add(direction.getModX(), direction.getModY(), direction.getModZ());
-            if (!next.getBlock().getType().equals(Material.DAYLIGHT_DETECTOR)) continue;
+        for (int i = MIN_RANGE; i <= MAX_RANGE; i++) {
+            Location next = location.add(direction.getModX(), direction.getModY(), direction.getModZ());
+
+            if (!next.getBlock().getType().equals(Material.DAYLIGHT_DETECTOR)) {
+                continue;
+            }
+
             Elevator elevator = new ElevatorImpl(next);
-            if (elevator.getAccessType().equals(accessType)) return elevator;
+
+            if (elevator.getAccessType().equals(accessType)) {
+                return elevator;
+            }
         }
         return null;
     }
@@ -57,7 +64,7 @@ public class ElevatorImpl implements Elevator {
      */
     @Override
     public AccessType getAccessType() {
-        return AccessType.fromDayLightDetector(daylightDetector);
+        return AccessType.fromDaylightDetector(daylightDetector);
     }
 
     /**

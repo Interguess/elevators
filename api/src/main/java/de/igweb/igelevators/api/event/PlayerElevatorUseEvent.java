@@ -21,12 +21,11 @@ public class PlayerElevatorUseEvent extends Event {
     /**
      * The ElevatorUseEvent is called when a player uses an Elevator (Also when the Elevator is not safe or no Elevator was found)
      *
-     * @param player         the player that used the Elevator
-     * @param elevator       the Elevator that was used
-     * @param targetElevator the Elevator that was targeted, or null if no Elevator was found or the Elevator is not safe
+     * @param player the player that used the Elevator
+     * @param from   the Elevator that was used
+     * @param to     the Elevator that was targeted, or null if no Elevator was found or the Elevator is not safe
      */
     public PlayerElevatorUseEvent(@NotNull Player player, @NotNull Elevator from, @NotNull Elevator to) {
-        super(true);
         this.player = player;
         this.from = from;
         this.to = to;
