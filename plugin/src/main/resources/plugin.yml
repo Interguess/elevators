@@ -3,6 +3,5 @@ name: IgElevators
 version: 1.0
 author: InterGuess
 description: A simple elevator plugin for Spigot
-#api-version: 1.19
 softdepend:
   - PlotSquared

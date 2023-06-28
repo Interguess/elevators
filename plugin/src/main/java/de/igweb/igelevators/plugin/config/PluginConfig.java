@@ -6,6 +6,10 @@ import org.bukkit.Sound;
 @Data
 public class PluginConfig {
 
+    private final int minRange;
+
+    private final int maxRange;
+
     private final String successMessage;
 
     private final Sound successSound;

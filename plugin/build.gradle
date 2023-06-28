@@ -23,4 +23,5 @@ dependencies {
     implementation platform('com.intellectualsites.bom:bom-1.18.x:1.28')
     compileOnly 'com.plotsquared:PlotSquared-Core'
     compileOnly 'com.plotsquared:PlotSquared-Bukkit'
+    implementation 'com.google.inject:guice:7.0.0'
 }
