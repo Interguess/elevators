@@ -1,0 +1,15 @@
+#Ranges
+min-range: 0
+max-range: 64
+
+#Messages: You can use color codes as &a or &b
+messages:
+  success: '&aYou have been teleported! (%floor%/%floors%)' #You can use the placeholders %floor% and %floors%
+  not-found: '&cNo floor found!'
+  unsafe: '&cFloor is not save!'
+
+#Sounds: You can find a list of all sound on https://www.digminecraft.com/lists/sound_list_pc.php
+sounds:
+  success: 'entity_experience_orb_pickup'
+  not-found: 'block_anvil_fall'
+  unsafe: 'block_anvil_break'

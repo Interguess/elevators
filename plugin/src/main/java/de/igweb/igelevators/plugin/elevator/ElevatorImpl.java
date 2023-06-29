@@ -29,12 +29,12 @@ public class ElevatorImpl implements Elevator {
     }
 
     /**
-     * @param direction  the direction to search
-     * @param accessType the access type to search
+     * @param direction     the direction to search
+     * @param minAccessType the minimal access type to search
      * @return the next {@link Elevator} up or null if there is no Elevator up
      */
     @Override
-    public Elevator getNextElevator(BlockFace direction, AccessType accessType) {
+    public Elevator getNextElevator(BlockFace direction, AccessType minAccessType) {
         for (int i = MIN_RANGE; i <= MAX_RANGE; i++) {
             Location next = location.add(direction.getModX(), direction.getModY(), direction.getModZ());
 
@@ -44,7 +44,8 @@ public class ElevatorImpl implements Elevator {
 
             Elevator elevator = new ElevatorImpl(next);
 
-            if (elevator.getAccessType().equals(accessType)) {
+
+            if (minAccessType == AccessType.PRIVATE || elevator.getAccessType() == AccessType.PUBLIC) {
                 return elevator;
             }
         }
