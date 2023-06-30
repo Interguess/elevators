@@ -2,16 +2,19 @@ package de.igweb.igelevators.plugin.elevator;
 
 import de.igweb.igelevators.api.elevator.AccessType;
 import de.igweb.igelevators.api.elevator.Elevator;
+import de.igweb.igelevators.plugin.IgElevators;
+import de.igweb.igelevators.plugin.config.PluginConfig;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.type.DaylightDetector;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ElevatorImpl implements Elevator {
 
-    private static final int MIN_RANGE = 1;
-
-    private static final int MAX_RANGE = 50;
+    private static final PluginConfig config = IgElevators.getInstance().getInjector().getInstance(PluginConfig.class);
 
     private final Location location;
 
@@ -35,7 +38,8 @@ public class ElevatorImpl implements Elevator {
      */
     @Override
     public Elevator getNextElevator(BlockFace direction, AccessType minAccessType) {
-        for (int i = MIN_RANGE; i <= MAX_RANGE; i++) {
+        Location location = this.location.clone();
+        for (int i = config.getMinRange() + 1; i <= config.getMaxRange(); i++) {
             Location next = location.add(direction.getModX(), direction.getModY(), direction.getModZ());
 
             if (!next.getBlock().getType().equals(Material.DAYLIGHT_DETECTOR)) {
@@ -43,7 +47,6 @@ public class ElevatorImpl implements Elevator {
             }
 
             Elevator elevator = new ElevatorImpl(next);
-
 
             if (minAccessType == AccessType.PRIVATE || elevator.getAccessType() == AccessType.PUBLIC) {
                 return elevator;
@@ -76,4 +79,24 @@ public class ElevatorImpl implements Elevator {
         return location.clone().add(0, 1, 0).getBlock().isEmpty()
                 && location.clone().add(0, 2, 0).getBlock().isEmpty();
     }
+
+    /**
+     * @param minAccessType the minimal access type to search
+     * @return The floor count of the elevator
+     */
+    @Override
+    public List<Elevator> getFloors(BlockFace direction, AccessType minAccessType) {
+        List<Elevator> floors = new ArrayList<>();
+
+        Elevator elevator = new ElevatorImpl(location);
+        do {
+            if (minAccessType == AccessType.PRIVATE || elevator.getAccessType() == AccessType.PUBLIC) {
+                floors.add(elevator);
+            }
+
+            elevator = elevator.getNextElevator(direction, minAccessType);
+        } while (elevator != null);
+        return floors;
+    }
+
 }

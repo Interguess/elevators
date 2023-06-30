@@ -3,6 +3,8 @@ package de.igweb.igelevators.api.elevator;
 import org.bukkit.Location;
 import org.bukkit.block.BlockFace;
 
+import java.util.List;
+
 public interface Elevator {
 
     /**
@@ -26,5 +28,11 @@ public interface Elevator {
      * @return whether the elevator is safe
      */
     boolean isSafe();
+
+    /**
+     * @param minAccessType the minimal access type to search
+     * @return The floor count of the elevator
+     */
+    List<Elevator> getFloors(BlockFace direction, AccessType minAccessType);
 
 }

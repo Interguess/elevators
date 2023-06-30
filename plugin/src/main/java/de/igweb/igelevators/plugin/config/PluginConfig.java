@@ -1,9 +1,11 @@
 package de.igweb.igelevators.plugin.config;
 
+import lombok.Builder;
 import lombok.Data;
 import org.bukkit.Sound;
 
 @Data
+@Builder
 public class PluginConfig {
 
     private final int minRange;
