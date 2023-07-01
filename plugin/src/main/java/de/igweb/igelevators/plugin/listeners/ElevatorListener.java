@@ -6,7 +6,6 @@ import de.igweb.igelevators.api.RegionProvider;
 import de.igweb.igelevators.api.elevator.AccessType;
 import de.igweb.igelevators.api.elevator.Elevator;
 import de.igweb.igelevators.api.event.PlayerElevatorUseEvent;
-import de.igweb.igelevators.plugin.IgElevators;
 import de.igweb.igelevators.plugin.config.PluginConfig;
 import de.igweb.igelevators.plugin.elevator.ElevatorImpl;
 import net.md_5.bungee.api.ChatMessageType;
@@ -20,6 +19,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerStatisticIncrementEvent;
+import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
 
 @Singleton
@@ -66,6 +66,14 @@ public class ElevatorListener implements Listener {
             return;
         }
 
+        PlayerElevatorUseEvent event = new PlayerElevatorUseEvent(player, from, to);
+
+        Bukkit.getPluginManager().callEvent(event);
+
+        if (event.isCancelled()) {
+            return;
+        }
+
         if (!to.isSafe()) {
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(config.getUnsafeMessage()));
             player.playSound(player.getLocation(), config.getUnsafeSound(), 1, 1);
@@ -83,9 +91,6 @@ public class ElevatorListener implements Listener {
         ));
 
         player.playSound(player.getLocation(), config.getSuccessSound(), 1, 1);
-        Bukkit.getScheduler().runTask(IgElevators.getInstance(), () -> {
-            Bukkit.getPluginManager().callEvent(new PlayerElevatorUseEvent(player, from, to));
-            player.teleport(to.getLocation());
-        });
+        player.teleport(to.getLocation(), PlayerTeleportEvent.TeleportCause.PLUGIN);
     }
 }

@@ -6,11 +6,13 @@ import de.igweb.igelevators.plugin.config.PluginConfig;
 import de.igweb.igelevators.plugin.provider.ConfigProvider;
 import de.igweb.igelevators.plugin.region.PlotSquaredRegionProvider;
 import org.bukkit.Bukkit;
+import org.bukkit.plugin.java.JavaPlugin;
 
 public class PluginModule extends AbstractModule {
 
     @Override
     protected void configure() {
+        bind(IgElevators.class).toInstance(JavaPlugin.getPlugin(IgElevators.class));
         bind(PluginConfig.class).toProvider(ConfigProvider.class);
 
         if (Bukkit.getPluginManager().getPlugin("PlotSquared") != null) {

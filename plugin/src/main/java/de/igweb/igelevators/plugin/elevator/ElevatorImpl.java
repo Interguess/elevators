@@ -14,7 +14,7 @@ import java.util.List;
 
 public class ElevatorImpl implements Elevator {
 
-    private static final PluginConfig config = IgElevators.getInstance().getInjector().getInstance(PluginConfig.class);
+    private static final PluginConfig config = IgElevators.getPluginConfig();
 
     private final Location location;
 
@@ -89,14 +89,15 @@ public class ElevatorImpl implements Elevator {
         List<Elevator> floors = new ArrayList<>();
 
         Elevator elevator = new ElevatorImpl(location);
-        do {
+
+        while (elevator != null && !Thread.interrupted()) {
             if (minAccessType == AccessType.PRIVATE || elevator.getAccessType() == AccessType.PUBLIC) {
                 floors.add(elevator);
             }
 
             elevator = elevator.getNextElevator(direction, minAccessType);
-        } while (elevator != null);
+        }
+
         return floors;
     }
-
 }
