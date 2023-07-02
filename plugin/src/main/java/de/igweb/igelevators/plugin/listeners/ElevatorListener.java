@@ -15,6 +15,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Statistic;
 import org.bukkit.block.BlockFace;
+import org.bukkit.block.DaylightDetector;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -52,7 +53,8 @@ public class ElevatorListener implements Listener {
     private void handle(Player player, BlockFace direction) {
         Location location = player.getLocation();
 
-        if (!location.getBlock().getType().equals(Material.DAYLIGHT_DETECTOR)) {
+        if (!(location.getBlock().getType().equals(Material.DAYLIGHT_DETECTOR) ||
+                location.getBlock().getType().equals(Material.LEGACY_DAYLIGHT_DETECTOR_INVERTED))) {
             return;
         }
 

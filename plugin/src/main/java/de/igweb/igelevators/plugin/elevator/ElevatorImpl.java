@@ -44,13 +44,14 @@ public class ElevatorImpl implements Elevator {
         for (int i = CONFIG.getMinRange() + 1; i <= CONFIG.getMaxRange(); i++) {
             Location next = location.add(direction.getModX(), direction.getModY(), direction.getModZ());
 
-            if (!next.getBlock().getType().equals(Material.DAYLIGHT_DETECTOR)) {
+            if (!(location.getBlock().getType().equals(Material.DAYLIGHT_DETECTOR) ||
+                    location.getBlock().getType().equals(Material.LEGACY_DAYLIGHT_DETECTOR_INVERTED))) {
                 continue;
             }
 
             Elevator elevator = new ElevatorImpl(next);
 
-            if (minAccessType == AccessType.PRIVATE || elevator.getAccessType() == AccessType.PUBLIC) {
+            if (elevator.getAccessType() == minAccessType || elevator.getAccessType() == AccessType.PUBLIC) {
                 return elevator;
             }
         }
@@ -84,7 +85,7 @@ public class ElevatorImpl implements Elevator {
         Elevator elevator = new ElevatorImpl(location);
 
         while (elevator != null && !Thread.interrupted()) {
-            if (minAccessType == AccessType.PRIVATE || elevator.getAccessType() == AccessType.PUBLIC) {
+            if (elevator.getAccessType() == minAccessType || elevator.getAccessType() == AccessType.PUBLIC) {
                 floors.add(elevator);
             }
 
