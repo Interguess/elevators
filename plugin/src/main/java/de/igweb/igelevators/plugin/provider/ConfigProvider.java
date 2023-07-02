@@ -7,10 +7,10 @@ import de.igweb.igelevators.plugin.config.PluginConfig;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 
 public class ConfigProvider implements Provider<PluginConfig> {
 
@@ -28,12 +28,12 @@ public class ConfigProvider implements Provider<PluginConfig> {
             return PluginConfig.builder()
                     .minRange(fileConfiguration.getInt("min-range"))
                     .maxRange(fileConfiguration.getInt("max-range"))
-                    .successMessage(ChatColor.translateAlternateColorCodes('&', fileConfiguration.getString("messages.success")))
-                    .successSound(Sound.valueOf(fileConfiguration.getString("sounds.success").toUpperCase()))
-                    .notFoundMessage(ChatColor.translateAlternateColorCodes('&', fileConfiguration.getString("messages.not-found")))
-                    .notFoundSound(Sound.valueOf(fileConfiguration.getString("sounds.not-found").toUpperCase()))
-                    .unsafeMessage(ChatColor.translateAlternateColorCodes('&', fileConfiguration.getString("messages.unsafe")))
-                    .unsafeSound(Sound.valueOf(fileConfiguration.getString("sounds.unsafe").toUpperCase()))
+                    .successMessage(parseMessage(fileConfiguration.getString("messages.success")))
+                    .successSound(parseSound(fileConfiguration.getString("sounds.success")))
+                    .notFoundMessage(parseMessage(fileConfiguration.getString("messages.not-found")))
+                    .notFoundSound(parseSound(fileConfiguration.getString("sounds.not-found")))
+                    .unsafeMessage(parseMessage(fileConfiguration.getString("messages.unsafe")))
+                    .unsafeSound(parseSound(fileConfiguration.getString("sounds.unsafe")))
                     .build();
         } catch (Exception exception) {
             handleException();
@@ -41,18 +41,24 @@ public class ConfigProvider implements Provider<PluginConfig> {
         }
     }
 
+    private String parseMessage(String input) {
+        return ChatColor.translateAlternateColorCodes('&', input);
+    }
+
+    private Sound parseSound(String input) {
+        return Sound.valueOf(input.toUpperCase());
+    }
+
     private void handleException() {
         try {
             plugin.getLogger().warning("There was a error in your config.yml, please fix it!");
 
-            Path configPath = plugin.getDataFolder().toPath().resolve("config.yml");
-            Path backupPath = plugin.getDataFolder().toPath().resolve("config.yml.broken");
+            Path dataFolderPath = plugin.getDataFolder().toPath();
+            Path configPath = dataFolderPath.resolve("config.yml");
+            Path backupPath = dataFolderPath.resolve("config.yml.broken");
 
-            Files.deleteIfExists(backupPath);
-            Files.copy(configPath, backupPath);
-            Files.delete(configPath);
+            Files.move(configPath, backupPath, StandardCopyOption.REPLACE_EXISTING);
 
-            plugin.getConfig().options().copyDefaults(true);
             plugin.saveDefaultConfig();
             plugin.reloadConfig();
         } catch (Exception exception) {

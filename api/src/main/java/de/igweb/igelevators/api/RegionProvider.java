@@ -2,6 +2,7 @@ package de.igweb.igelevators.api;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 public interface RegionProvider {
 
@@ -12,6 +13,5 @@ public interface RegionProvider {
      * @param location the location of the region
      * @return whether the player is trusted in the region
      */
-    boolean isTrusted(Player player, Location location);
-
+    boolean isTrusted(@NotNull Player player, @NotNull Location location);
 }

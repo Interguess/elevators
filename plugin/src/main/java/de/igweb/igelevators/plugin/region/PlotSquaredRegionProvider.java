@@ -5,6 +5,7 @@ import com.plotsquared.core.plot.Plot;
 import de.igweb.igelevators.api.RegionProvider;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 public class PlotSquaredRegionProvider implements RegionProvider {
 
@@ -16,7 +17,7 @@ public class PlotSquaredRegionProvider implements RegionProvider {
      * @return whether the player is trusted in the region
      */
     @Override
-    public boolean isTrusted(Player player, Location location) {
+    public boolean isTrusted(@NotNull Player player, @NotNull Location location) {
         Plot plot = BukkitUtil.adapt(location).getPlot();
         return plot == null || plot.isAdded(player.getUniqueId());
     }
