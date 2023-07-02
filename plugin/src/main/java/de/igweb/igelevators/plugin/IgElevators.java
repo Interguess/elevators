@@ -13,18 +13,17 @@ public class IgElevators extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        this.getConfig().options().copyDefaults(true);
         this.saveDefaultConfig();
 
         injector = Guice.createInjector(new PluginModule());
 
         Bukkit.getPluginManager().registerEvents(injector.getInstance(ElevatorListener.class), this);
-        getLogger().info("IgElevators enabled!");
+        this.getLogger().info("IgElevators enabled!");
     }
 
     @Override
     public void onDisable() {
-        getLogger().info("IgElevators disabled!");
+        this.getLogger().info("IgElevators disabled!");
     }
 
     public static PluginConfig getPluginConfig() {

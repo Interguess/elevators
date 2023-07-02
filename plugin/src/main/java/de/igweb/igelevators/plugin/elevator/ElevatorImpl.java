@@ -8,13 +8,15 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.type.DaylightDetector;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ElevatorImpl implements Elevator {
 
-    private static final PluginConfig config = IgElevators.getPluginConfig();
+    private static final PluginConfig CONFIG = IgElevators.getPluginConfig();
 
     private final Location location;
 
@@ -37,9 +39,9 @@ public class ElevatorImpl implements Elevator {
      * @return the next {@link Elevator} up or null if there is no Elevator up
      */
     @Override
-    public Elevator getNextElevator(BlockFace direction, AccessType minAccessType) {
+    public @Nullable Elevator getNextElevator(@NotNull BlockFace direction, @NotNull AccessType minAccessType) {
         Location location = this.location.clone();
-        for (int i = config.getMinRange() + 1; i <= config.getMaxRange(); i++) {
+        for (int i = CONFIG.getMinRange() + 1; i <= CONFIG.getMaxRange(); i++) {
             Location next = location.add(direction.getModX(), direction.getModY(), direction.getModZ());
 
             if (!next.getBlock().getType().equals(Material.DAYLIGHT_DETECTOR)) {
@@ -59,7 +61,7 @@ public class ElevatorImpl implements Elevator {
      * @return the location of the elevator
      */
     @Override
-    public Location getLocation() {
+    public @NotNull Location getLocation() {
         return location;
     }
 
@@ -67,17 +69,8 @@ public class ElevatorImpl implements Elevator {
      * @return the access type of the elevator
      */
     @Override
-    public AccessType getAccessType() {
+    public @NotNull AccessType getAccessType() {
         return AccessType.fromDaylightDetector(daylightDetector);
-    }
-
-    /**
-     * @return whether the elevator is safe
-     */
-    @Override
-    public boolean isSafe() {
-        return location.clone().add(0, 1, 0).getBlock().isEmpty()
-                && location.clone().add(0, 2, 0).getBlock().isEmpty();
     }
 
     /**
@@ -85,7 +78,7 @@ public class ElevatorImpl implements Elevator {
      * @return The floor count of the elevator
      */
     @Override
-    public List<Elevator> getFloors(BlockFace direction, AccessType minAccessType) {
+    public @NotNull List<Elevator> getFloors(@NotNull BlockFace direction, @NotNull AccessType minAccessType) {
         List<Elevator> floors = new ArrayList<>();
 
         Elevator elevator = new ElevatorImpl(location);
@@ -99,5 +92,14 @@ public class ElevatorImpl implements Elevator {
         }
 
         return floors;
+    }
+
+    /**
+     * @return whether the elevator is safe
+     */
+    @Override
+    public boolean isSafe() {
+        return location.clone().add(0, 1, 0).getBlock().isEmpty()
+                && location.clone().add(0, 2, 0).getBlock().isEmpty();
     }
 }
