@@ -1,6 +1,7 @@
 main: de.igweb.igelevators.plugin.IgElevators
 name: IgElevators
-version: 1.1
+version: 1.1.1
+api-version: 1.13
 author: InterGuess
 description: A simple elevator plugin for Spigot
 softdepend:
