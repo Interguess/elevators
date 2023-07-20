@@ -15,7 +15,6 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Statistic;
 import org.bukkit.block.BlockFace;
-import org.bukkit.block.DaylightDetector;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -58,7 +57,8 @@ public class ElevatorListener implements Listener {
             return;
         }
 
-        AccessType minAccessType = regionProvider.isTrusted(player, location) ? AccessType.PRIVATE : AccessType.PUBLIC;
+        AccessType minAccessType = regionProvider.isTrusted(player, location)
+                || player.hasPermission("elevators.bypass") ? AccessType.PRIVATE : AccessType.PUBLIC;
         Elevator from = new ElevatorImpl(location);
         Elevator to = from.getNextElevator(direction, minAccessType);
 
@@ -85,11 +85,9 @@ public class ElevatorListener implements Listener {
         int floor = to.getFloors(BlockFace.DOWN, minAccessType).size();
         int floors = floor + to.getFloors(BlockFace.UP, minAccessType).size() - 1;
 
-        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(
-                config.getSuccessMessage()
-                        .replace("%floor%", String.valueOf(floor))
-                        .replace("%floors%", String.valueOf(floors))
-
+        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(config.getSuccessMessage()
+                .replace("%floor%", String.valueOf(floor))
+                .replace("%floors%", String.valueOf(floors))
         ));
 
         player.playSound(player.getLocation(), config.getSuccessSound(), 1, 1);
