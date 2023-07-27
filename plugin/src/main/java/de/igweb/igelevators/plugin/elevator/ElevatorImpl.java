@@ -31,9 +31,12 @@ public class ElevatorImpl implements Elevator {
     public ElevatorImpl(Location location) {
         this.location = location;
         this.daylightDetector = (DaylightDetector) location.getBlock().getBlockData();
+
+        this.location.setX(this.location.getBlockX() + 0.5);
+        this.location.setZ(this.location.getBlockZ() + 0.5);
     }
 
-    /**
+    /**n
      * @param direction     the direction to search
      * @param minAccessType the minimal access type to search
      * @return the next {@link Elevator} up or null if there is no Elevator up
