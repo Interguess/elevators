@@ -2,9 +2,6 @@ plugins {
     id 'java'
 }
 
-group = 'de.interguess'
-version = '1.2.0-SNAPSHOT'
-
 repositories {
     mavenCentral()
     maven {
@@ -16,8 +13,8 @@ repositories {
 }
 
 dependencies {
-    implementation project(':api')
-    implementation 'org.projectlombok:lombok:1.18.28'
+    compileOnly project(':api')
+    compileOnly 'org.projectlombok:lombok:1.18.28'
     annotationProcessor 'org.projectlombok:lombok:1.18.28'
     compileOnly 'org.spigotmc:spigot-api:1.20.1-R0.1-SNAPSHOT'
     implementation platform('com.intellectualsites.bom:bom-1.18.x:1.31')

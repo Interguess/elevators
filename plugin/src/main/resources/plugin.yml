@@ -1,8 +1,8 @@
 main: de.interguess.igelevators.plugin.IgElevators
 name: IgElevators
-version: 1.1.1
+version: 1.2.0
 api-version: 1.13
-author: InterGuess
+author: Interguess
 description: A simple elevator plugin for Spigot
 softdepend:
   - PlotSquared
