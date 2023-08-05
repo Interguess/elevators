@@ -1,4 +1,4 @@
-package de.igweb.igelevators.api;
+package de.interguess.igelevators.api;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Player;

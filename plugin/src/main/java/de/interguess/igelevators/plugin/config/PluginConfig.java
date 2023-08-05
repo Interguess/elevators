@@ -1,4 +1,4 @@
-package de.igweb.igelevators.plugin.config;
+package de.interguess.igelevators.plugin.config;
 
 import lombok.Builder;
 import lombok.Data;

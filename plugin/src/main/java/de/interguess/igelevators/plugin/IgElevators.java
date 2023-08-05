@@ -1,9 +1,9 @@
-package de.igweb.igelevators.plugin;
+package de.interguess.igelevators.plugin;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import de.igweb.igelevators.plugin.config.PluginConfig;
-import de.igweb.igelevators.plugin.listeners.ElevatorListener;
+import de.interguess.igelevators.plugin.config.PluginConfig;
+import de.interguess.igelevators.plugin.listeners.ElevatorListener;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 

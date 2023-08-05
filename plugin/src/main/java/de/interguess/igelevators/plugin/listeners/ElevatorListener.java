@@ -1,13 +1,13 @@
-package de.igweb.igelevators.plugin.listeners;
+package de.interguess.igelevators.plugin.listeners;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import de.igweb.igelevators.api.RegionProvider;
-import de.igweb.igelevators.api.elevator.AccessType;
-import de.igweb.igelevators.api.elevator.Elevator;
-import de.igweb.igelevators.api.event.PlayerElevatorUseEvent;
-import de.igweb.igelevators.plugin.config.PluginConfig;
-import de.igweb.igelevators.plugin.elevator.ElevatorImpl;
+import de.interguess.igelevators.api.RegionProvider;
+import de.interguess.igelevators.api.elevator.AccessType;
+import de.interguess.igelevators.api.elevator.Elevator;
+import de.interguess.igelevators.api.event.PlayerElevatorUseEvent;
+import de.interguess.igelevators.plugin.config.PluginConfig;
+import de.interguess.igelevators.plugin.elevator.ElevatorImpl;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;

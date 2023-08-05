@@ -1,9 +1,9 @@
-package de.igweb.igelevators.plugin.provider;
+package de.interguess.igelevators.plugin.provider;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
-import de.igweb.igelevators.plugin.IgElevators;
-import de.igweb.igelevators.plugin.config.PluginConfig;
+import de.interguess.igelevators.plugin.IgElevators;
+import de.interguess.igelevators.plugin.config.PluginConfig;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;

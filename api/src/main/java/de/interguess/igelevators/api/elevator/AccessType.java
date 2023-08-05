@@ -1,4 +1,4 @@
-package de.igweb.igelevators.api.elevator;
+package de.interguess.igelevators.api.elevator;
 
 import org.bukkit.block.data.type.DaylightDetector;
 

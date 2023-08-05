@@ -1,8 +1,8 @@
-package de.igweb.igelevators.plugin.region;
+package de.interguess.igelevators.plugin.region;
 
 import com.plotsquared.bukkit.util.BukkitUtil;
 import com.plotsquared.core.plot.Plot;
-import de.igweb.igelevators.api.RegionProvider;
+import de.interguess.igelevators.api.RegionProvider;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;

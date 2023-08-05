@@ -1,7 +1,7 @@
-package de.igweb.igelevators.api.event;
+package de.interguess.igelevators.api.event;
 
 
-import de.igweb.igelevators.api.elevator.Elevator;
+import de.interguess.igelevators.api.elevator.Elevator;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;

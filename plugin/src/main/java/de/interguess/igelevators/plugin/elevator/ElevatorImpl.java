@@ -1,9 +1,9 @@
-package de.igweb.igelevators.plugin.elevator;
+package de.interguess.igelevators.plugin.elevator;
 
-import de.igweb.igelevators.api.elevator.AccessType;
-import de.igweb.igelevators.api.elevator.Elevator;
-import de.igweb.igelevators.plugin.IgElevators;
-import de.igweb.igelevators.plugin.config.PluginConfig;
+import de.interguess.igelevators.api.elevator.AccessType;
+import de.interguess.igelevators.api.elevator.Elevator;
+import de.interguess.igelevators.plugin.IgElevators;
+import de.interguess.igelevators.plugin.config.PluginConfig;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.BlockFace;

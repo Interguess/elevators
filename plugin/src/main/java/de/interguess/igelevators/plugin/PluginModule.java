@@ -1,10 +1,10 @@
-package de.igweb.igelevators.plugin;
+package de.interguess.igelevators.plugin;
 
 import com.google.inject.AbstractModule;
-import de.igweb.igelevators.api.RegionProvider;
-import de.igweb.igelevators.plugin.config.PluginConfig;
-import de.igweb.igelevators.plugin.provider.ConfigProvider;
-import de.igweb.igelevators.plugin.region.PlotSquaredRegionProvider;
+import de.interguess.igelevators.api.RegionProvider;
+import de.interguess.igelevators.plugin.config.PluginConfig;
+import de.interguess.igelevators.plugin.provider.ConfigProvider;
+import de.interguess.igelevators.plugin.region.PlotSquaredRegionProvider;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
