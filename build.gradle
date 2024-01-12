@@ -1,22 +1,12 @@
 plugins {
     id 'java'
-    id 'com.github.johnrengelman.shadow' version '8.1.1'
 }
 
 group = 'de.interguess'
-version = '1.2.0-SNAPSHOT'
+version = '1.2.1'
 
 repositories {
     mavenCentral()
-}
-
-dependencies {
-    implementation project(':api')
-    implementation project(':plugin')
-}
-
-java {
-    toolchain.languageVersion.set(JavaLanguageVersion.of(17))
 }
 
 tasks.withType(JavaCompile).configureEach {
