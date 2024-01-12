@@ -1,8 +1,9 @@
 main: de.interguess.igelevators.plugin.IgElevators
 name: IgElevators
-version: 1.2.0
+version: 1.2.1
 api-version: 1.13
 author: Interguess
 description: A simple elevator plugin for Spigot
+folia-supported: true
 softdepend:
   - PlotSquared
