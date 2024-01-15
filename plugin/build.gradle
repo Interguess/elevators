@@ -27,5 +27,5 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.30'
 
     compileOnly 'com.plotsquared:PlotSquared-Core:6.3.0'
-    compileOnly 'com.plotsquared:PlotSquared-Bukkit:6.3.0'
+    compileOnly 'com.plotsquared:PlotSquared-Bukkit:6.11.2'
 }
